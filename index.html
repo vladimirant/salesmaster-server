@@ -62,7 +62,8 @@ function requestPost()
 
 		xhr.onreadystatechange = function() { // Ждём ответа от сервера
 	      if (xhr.readyState == 4) { // Ответ пришёл
-	    	  alert(xhr.status);
+	    	 
+	    	  document.location.href = "http://localhost:8080/salesmaster/second";
 	        if(xhr.status == 200) { // Сервер вернул код 200 (что хорошо)
 	        	
 	          document.getElementById("summa").innerHTML = xhr.responseText; // Выводим ответ сервера
