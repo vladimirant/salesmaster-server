@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+function getXmlHttp() {
+    var xmlhttp;
+    try {
+      xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+    try {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (E) {
+      xmlhttp = false;
+    }
+    }
+    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+      xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+  }
+
+
+
+function requestGet()
+{
+
+	var xhr = getXmlHttp();
+
+	var params = 'text=textFromGETrwquest';
+
+	xhr.open("GET", '/second?'+params, true);
+
+	xhr.onreadystatechange = function() { // Ждём ответа от сервера
+	      if (xhr.readyState == 4) { // Ответ пришёл
+	    	  
+	        if(xhr.status == 200) { // Сервер вернул код 200 (что хорошо)
+	        	
+	          document.getElementById("summa").innerHTML = xhr.responseText; // Выводим ответ сервера
+	        }
+	      }
+	    };
+	
+	xhr.send(params);
+
+}
+
+
+function requestPost()
+{
+	var xhr = getXmlHttp();
+
+	var params = 'name=textFromPOSTrwquest';
+
+	xhr.open("POST", 'http://localhost:8080/salesmaster/second', true)
+
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+		xhr.onreadystatechange = function() { // Ждём ответа от сервера
+	      if (xhr.readyState == 4) { // Ответ пришёл
+	    	  alert(xhr.status);
+	        if(xhr.status == 200) { // Сервер вернул код 200 (что хорошо)
+	        	
+	          document.getElementById("summa").innerHTML = xhr.responseText; // Выводим ответ сервера
+	        }
+	      }
+	    };
+	alert("4");
+	xhr.send(params);
+	
+}
+
+</script>
+</head>
+<body>
+<h1>Temp index File</h1>
+
+<div>Target urls:</div>
+<a href="http://localhost:8080/salesmaster/">http://localhost:8080/salesmaster/</a>
+<p/>
+<a href="http://localhost:8080/salesmaster/first">http://localhost:8080/salesmaster/first</a>
+<p/>
+<div>
+	<input type="button" onclick="requestPost();" value="POST" ></button>
+</div>
+<p/>
+<div>
+	<input type="button" onclick="requestGet();" value="GET"></button>
+</div>
+
+<p/>
+  <input type="button" value="Сумма" onclick="requestPost();" />
+  <p>Сумма равна: <span id="summa"></span></p>
+
+
+
+</body>
+</html>

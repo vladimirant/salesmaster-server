@@ -2,14 +2,19 @@ package com.nau.salesmaster;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -34,6 +39,40 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	
+	@RequestMapping(value = "/first", method = RequestMethod.GET)
+	public String firstJsp(Locale local, Model model, HttpServletRequest request) {
+		logger.info("Test method firstJSP!");
+		
+		model.addAttribute("firstJspValue", "Hello from first jsp!");
+		
+		
+		return "first";
+		
+	}
+	
+	@RequestMapping(value = "/second", method = RequestMethod.GET)
+	public String secondJspGet(Model model, 
+							@RequestParam(value = "text", required = false) String text) {
+		
+		
+		model.addAttribute("firstJspValue", "GET  -  params: "+(text == null ? "Haven`t params!" : text));
+		
+		
+		return "first";
+	}
+	
+	@RequestMapping(value = "/second", method = RequestMethod.POST)
+	public String secondJspPost(Model model, 
+							@RequestParam(value = "text", required = false) String text) {
+		
+		
+		model.addAttribute("firstJspValue", "POST  -  params: "+(text == null ? "Haven`t params!" : text));
+		
+		
+		return "first";
 	}
 	
 }
