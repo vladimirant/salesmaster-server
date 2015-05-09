@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="perUnit">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.nau.salesmaster.models.Customer</class>
+        <class>com.nau.salesmaster.models.MainOrder</class>
+        <class>com.nau.salesmaster.models.OrderedProduct</class>
+        <class>com.nau.salesmaster.models.Product</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/salesmaster"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value = "vladimir"/>
+            <property name="hibernate.connection.password" value = "051569"/>
+        </properties>
+    </persistence-unit>
+</persistence>

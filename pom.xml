@@ -108,7 +108,22 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.2.2.Final</version>
+		</dependency>
+
+		<!-- Posgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1201-jdbc4</version>
+		</dependency>
+
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
